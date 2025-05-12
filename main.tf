@@ -9,7 +9,7 @@ resource "datadog_monitor" "cpu_usage" {
   type               = "Metric Alert"
   query              = "avg(last_5m):avg:system.cpu.user{*} > ${var.cpu_threshold}"
   message            = "CPU usage is above ${var.cpu_threshold}, Investigate Immediately"
-  escalation_message = "Critical CPU usage alert!"
+  escalation_message = "var.cpu_usage_msg
   thresholds {
       critical = var.cpu_threshold
 }
@@ -20,7 +20,7 @@ resource "datadog_monitor" "cpu_usage" {
     type              = "Metric Alert"
     query             = "avg(last_5m):avg.myapp.latency{*} > ${var.latency_threshold}"
     message            = "Latency usage is above ${var.latency_threshold}, Investigate Immediately"
-    escalation_message = "Critical latency alert!"
+    escalation_message = var.latency_msg
     thresholds {
       critical =var.latency_threshold
   }
@@ -31,7 +31,7 @@ resource "datadog_monitor" "http_500_errors" {
     type              = "Metric Alert"
     query             = "avg(last_5m):avg.myapp.https.500{*} > ${var.http_500_threshold}"
     message            = "Latency usage is above ${var.http_500_threshold}, Investigate Immediately"
-    escalation_message = "Critical latency alert!"
+    escalation_message = var.http_500_msg
     thresholds {
       critical =var.http_500_threshold
   }
